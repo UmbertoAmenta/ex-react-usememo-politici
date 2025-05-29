@@ -1,12 +1,14 @@
+/* GENERAL */
 :root {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* POLITICIANS GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
   gap: 20px;
 
@@ -26,7 +28,7 @@
     .info {
       flex: 1;
       padding-left: 10px;
-      max-height: auto;
+      height: 95%;
 
       > *:not(:last-child) {
         margin-bottom: 10px;
@@ -38,4 +40,13 @@
       }
     }
   }
+}
+
+/* SEARCH BAR */
+.searchbar {
+  display: block;
+  margin: 20px auto;
+  padding: 5px;
+  /* width: 350px; */
+  /* text-align: center; */
 }
