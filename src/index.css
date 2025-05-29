@@ -1,0 +1,41 @@
+:root {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
+
+  .card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+
+    > img {
+      flex-shrink: 0;
+      width: 40%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .info {
+      flex: 1;
+      padding-left: 10px;
+      max-height: auto;
+
+      > *:not(:last-child) {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      > p {
+        font-size: 14px;
+      }
+    }
+  }
+}
