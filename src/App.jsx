@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import SearchBar from "./components/SearchBar";
+import Card from "./components/Card";
 
 export default function App() {
   const [politicians, setPoliticians] = useState([]);
@@ -34,16 +35,8 @@ export default function App() {
     <>
       <SearchBar search={search} setSearch={setSearch} />
       <div className="grid">
-        {filteredPoliticians.map((p, i) => (
-          <div key={i} className="card">
-            <img src={p.image} alt={p.name} />
-            <div className="info">
-              <div>{p.name}</div>
-              <div>{p.country}</div>
-              <div>{p.position}</div>
-              <p>{p.biography}</p>
-            </div>
-          </div>
+        {filteredPoliticians.map((p) => (
+          <Card key={p.id} politician={p} />
         ))}
       </div>
     </>
