@@ -2,10 +2,19 @@ import { useEffect, useMemo, useState } from "react";
 
 import SearchBar from "./components/SearchBar";
 import Card from "./components/Card";
+import Filter from "./components/Filter";
 
 export default function App() {
   const [politicians, setPoliticians] = useState([]);
   const [search, setSearch] = useState("");
+  const [selectedPosition, setSelectedPosition] = useState("");
+
+  const onlyPositions = politicians.reduce((positionsList, politician) => {
+    if (!positionsList.includes(politician.position)) {
+      positionsList.push(politician.position);
+    }
+    return positionsList;
+  }, []);
 
   useEffect(() => {
     const getPoliticians = async () => {
@@ -26,14 +35,20 @@ export default function App() {
     const lowerSearch = search.toLowerCase();
     return politicians.filter(
       (p) =>
-        p.name.toLowerCase().includes(lowerSearch) ||
-        p.biography.toLowerCase().includes(lowerSearch)
+        (p.name.toLowerCase().includes(lowerSearch) ||
+          p.biography.toLowerCase().includes(lowerSearch)) &&
+        (selectedPosition === "" || p.position === selectedPosition)
     );
-  }, [politicians, search]);
+  }, [politicians, search, selectedPosition]);
 
   return (
     <>
       <SearchBar search={search} setSearch={setSearch} />
+      <Filter
+        selectedPosition={selectedPosition}
+        setSelectedPosition={setSelectedPosition}
+        onlyPositions={onlyPositions}
+      />
       <div className="grid">
         {filteredPoliticians.map((p) => (
           <Card key={p.id} politician={p} />

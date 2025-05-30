@@ -45,7 +45,21 @@
 /* SEARCH BAR */
 .searchbar {
   display: block;
-  margin: 20px auto;
+  margin-top: 20px;
+  margin-bottom: 15px;
   padding: 5px;
   text-align: center;
+
+  input {
+    text-align: center;
+  }
+}
+
+/* SELECT */
+.filter {
+  margin-bottom: 15px;
+  text-align: center;
+  select {
+    text-align: center;
+  }
 }
