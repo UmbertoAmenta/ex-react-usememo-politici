@@ -9,12 +9,16 @@ export default function App() {
   const [search, setSearch] = useState("");
   const [selectedPosition, setSelectedPosition] = useState("");
 
-  const onlyPositions = politicians.reduce((positionsList, politician) => {
-    if (!positionsList.includes(politician.position)) {
-      positionsList.push(politician.position);
-    }
-    return positionsList;
-  }, []);
+  const onlyPositions = useMemo(
+    () =>
+      politicians.reduce((positionsList, politician) => {
+        if (!positionsList.includes(politician.position)) {
+          positionsList.push(politician.position);
+        }
+        return positionsList;
+      }, []),
+    [politicians]
+  );
 
   useEffect(() => {
     const getPoliticians = async () => {
